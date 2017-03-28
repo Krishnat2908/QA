@@ -1,0 +1,22 @@
+Finding elements in selenium
+
+1. By ID:
+in Java: driver.findElement(By.id("element id"))
+
+2. By CLASS:
+in Java: driver.findElement(By.className("element class"))
+
+3. By NAME:
+in Java: driver.findElement(By.name("element name"))
+
+4. By TAGNAME:
+in Java: driver.findElement(By.tagName("element html tag name"))
+
+5. By CSS Selector:
+in Java: driver.findElement(By.cssSelector("css selector"))
+
+6. By Link:
+in Java: driver.findElement(By.link("link text"))
+
+7. By XPath:
+in Java: driver.findElement(By.xpath("xpath expression"))

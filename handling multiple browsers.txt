@@ -1,0 +1,46 @@
+public class CrossBrowserScript {
+
+    WebDriver driver;
+
+    @BeforeTest
+    @Parameters("browser")
+    public void setup(String browser) throws Exception{
+   
+        if(browser.equalsIgnoreCase("firefox")){
+     
+            driver = new FirefoxDriver();
+        }
+   
+        else if(browser.equalsIgnoreCase("chrome")){
+            
+            System.setProperty("webdriver.chrome.driver",".\\chromedriver.exe");
+           
+            driver = new ChromeDriver();
+        }
+      
+                else if(browser.equalsIgnoreCase("ie")){
+                  
+                    System.setProperty("webdriver.ie.driver",".\\IEDriverServer.exe");
+                   
+                    driver = new InternetExplorerDriver();
+                }
+        else{
+            
+            throw new Exception("Browser is not correct");
+        }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    @Test
+    public void testParameterWithXML() throws InterruptedException{
+        driver.get("http://gmail.com");
+       
+        WebElement userName = driver.findElement(By.name("uid"));
+        
+        userName.sendKeys("nitin");
+      
+        WebElement password = driver.findElement(By.name("password"));
+      
+        password.sendKeys("krishna");
+    }
+}

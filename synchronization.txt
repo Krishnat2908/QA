@@ -1,0 +1,55 @@
+Synchronization can be classified into two categories:
+
+1. Unconditional: Wait() and Thread.Sleep();
+2. Conditional Synchronization:
+   A.Implicit Wait:driver.manage.TimeOuts.implicitwait(6,Timeunit.SECONDS);
+   B.Explicit Wait: WebDriverWait wait = new WebDriverWait(driver, 10);
+   C.Fluent Wait:Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+					//Wait for the condition
+				       .withTimeout(30, TimeUnit.SECONDS) 
+				         // which to check for the condition with interval of 5 seconds. 
+				       .pollingEvery(5, TimeUnit.SECONDS) 
+				     //Which will ignore the NoSuchElementException
+				       .ignoring(NoSuchElementException.class);
+
+We can add synchronization points in Selenium using 3 ways as mentioned below.
+1.Page Load Synchronization
+2.Element Synchronization
+3.Specific condition synchronization
+
+
+Example:
+
+public class OpenGoogle {
+    
+public static void main(String [] arg) 
+{
+
+System.setProperty("webdriver.chrome.driver", "C:\\Selenuim\\chromedriver2.8.exe");
+
+WebDriver driver =  new ChromeDriver();
+
+try{
+
+driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+driver.manage().timeouts().pageLoadTimeout(50,TimeUnit.SECONDS);
+
+driver.get("https://www.google.co.in");
+
+driver.manage().window().maximize();
+
+Thread.sleep(2000);
+
+}
+
+catch(Exception e){
+ System.out.println("Exception - > " + e.toString());
+ }
+ finally{
+  driver.close();
+  driver.quit();
+ }
+} 
+
+}//class ends
